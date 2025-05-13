@@ -17,6 +17,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       if (token.sub && session.user) {
         session.user.id = token.sub;
         session.user.role = token.role;
+        session.user.externalId = token.externalId;
       }
       return session;
     },
@@ -24,6 +25,7 @@ export const { auth, signIn, signOut, handlers } = NextAuth({
       if (user) {
         token.id = user.id;
         token.role = user.role;
+        token.externalId = user.externalId;
       }
       return token;
     },

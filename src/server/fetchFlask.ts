@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'server-only'
 
 interface IFetch {
@@ -6,16 +5,21 @@ interface IFetch {
     method: 'POST' | 'PUT' | 'GET'
 }
 
-export default async function fetchFlask({endpoint, method}:IFetch){
+export default async function fetchFlask({ endpoint, method }: IFetch) {
     try {
-        const response = await fetch(endpoint, { method });
+        const URI = process.env.FLASKAPI_BASE_URL! + endpoint
+        const response = await fetch(URI, { method, headers: { 'Content-type': 'application/json' } });
+        console.log(`URI ${URI}`)
         const isOk = response.ok;
-        if(isOk){
+        if (isOk) {
             const json = await response.json();
+            console.log({ json })
             return json
         }
         return response.statusText;
-    } catch (error: any) {
-        throw new Error(error);
+    } catch (error: unknown) {
+        console.log({ error })
+        const err = error as Error
+        throw new Error(err.message);
     }
 }

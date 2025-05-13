@@ -4,16 +4,16 @@ export function formatToHHmm(totalMinutes: number): string {
   return `${hours}h:${minutes}min`;
 }
 
-export type headersKey = "sleepDuration" | "bedTime" | "wakeUps" | "medicationTaken" | 'createdAt';
+export type headersKey = "sleepDurationInMinutes" | "timeToBed" | "wakesUp" | "tookMedication" | 'createdAt';
 
 export function translateHeader(key: headersKey) {
   const dictonary = {
     id: 'ID',
     name: 'Nome',
-    sleepDuration: 'Duração do sono',
-    bedTime: 'Horário que deitou',
-    wakeUps: 'Despertares',
-    medicationTaken: 'Ingeriu medicamento?',
+    sleepDurationInMinutes: 'Duração do sono',
+    timeToBed: 'Horário que deitou',
+    wakesUp: 'Despertares',
+    tookMedication: 'Ingeriu medicamento?',
     createdAt: 'Dia da semana'
   }
   return dictonary[key] || 'Header Inválido'

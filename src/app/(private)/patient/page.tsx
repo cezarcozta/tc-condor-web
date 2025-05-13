@@ -21,7 +21,9 @@ export default function PatientHome() {
           Criar Novo Registro{` >>`}
         </Button>
         <Button
-          onClick={() => router.push(`/patient/${session.data?.user?.id}`)}
+          onClick={() =>
+            router.push(`/patient/${session.data?.user?.externalId}`)
+          }
         >
           Visualizar Diario{` >>`}
         </Button>
